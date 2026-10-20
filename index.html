@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100510">
+<title>Gửi các bạn nữ — 20/10 🌸</title>
+<style>
+*{box-sizing:border-box}
+:root{--pink:#ff8fc9;--pale:#ffe1f0;--glow:#ff40a5}
+body{
+ margin:0;min-height:100svh;overflow-x:hidden;
+ background:radial-gradient(ellipse at 50% 42%,#35102d 0%,#150714 48%,#050207 100%);
+ color:var(--pale);font-family:Georgia,serif;
+}
+button{font:inherit}
+.scene{
+ min-height:100svh;display:flex;align-items:center;justify-content:center;
+ position:relative;isolation:isolate;padding:26px 16px;
+}
+.stars,.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.stars{z-index:-1;background-image:
+ radial-gradient(#ffd5ee 1px,transparent 1.5px),
+ radial-gradient(#ff83c6 1px,transparent 1.5px);
+ background-size:83px 97px,127px 141px;
+ background-position:0 0,39px 62px;opacity:.36;
+ animation:twinkle 4s ease-in-out infinite alternate}
+@keyframes twinkle{to{opacity:.7;filter:brightness(1.5)}}
+
+.main{width:min(100%,440px);text-align:center;position:relative}
+.kicker{
+ font:11px system-ui,sans-serif;letter-spacing:4px;
+ color:#e6a1cc;text-transform:uppercase;margin-bottom:26px;
+ animation:rise 1s both
+}
+.envelope-wrap{
+ height:235px;display:grid;place-items:center;
+ perspective:900px;position:relative;cursor:pointer;
+ -webkit-tap-highlight-color:transparent;
+}
+.envelope{
+ width:min(78vw,290px);height:174px;position:relative;
+ transform-style:preserve-3d;
+ filter:drop-shadow(0 0 22px #ff3c9a33);
+ animation:float 3s ease-in-out infinite;
+}
+.env-back{
+ position:absolute;inset:0;border-radius:8px;
+ background:linear-gradient(145deg,#f6a8d1,#b83b83);
+ box-shadow:0 0 30px #ff55ad30;
+}
+.letter{
+ position:absolute;left:8%;width:84%;height:88%;top:5%;
+ border-radius:5px;background:linear-gradient(#fff0f8,#ffcbe5);
+ color:#9e306c;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;gap:8px;
+ transform:translateY(0);transition:transform 1s cubic-bezier(.2,.8,.2,1);
+ font-size:14px;box-shadow:0 0 15px #ffb6da55;
+}
+.letter .mini-flower{font-size:32px}
+.env-front{
+ position:absolute;inset:0;border-radius:7px;overflow:hidden;
+ background:linear-gradient(145deg,#f9b8da,#e779b4);
+ clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);
+}
+.flap{
+ position:absolute;inset:0 0 auto;height:65%;
+ background:linear-gradient(145deg,#ffcee7,#e78abb);
+ clip-path:polygon(0 0,100% 0,50% 100%);
+ transform-origin:50% 0;transform:rotateX(0);
+ transition:transform .85s cubic-bezier(.2,.75,.25,1);
+ z-index:4;backface-visibility:visible;
+}
+.seal{
+ position:absolute;z-index:5;left:50%;top:48%;
+ transform:translate(-50%,-50%);
+ width:43px;height:43px;border-radius:50%;
+ display:grid;place-items:center;background:#bd3b7d;
+ box-shadow:0 0 20px #ffb5d9;
+ font-size:23px;transition:opacity .3s,transform .4s;
+}
+.envelope-wrap.open .flap{transform:rotateX(180deg)}
+  .envelope-wrap.open .seal{opacity:0;transform:translate(-50%,-50%) scale(.3)}
+.envelope-wrap.open .letter{transform:translateY(-105px);transition-delay:.35s}
+.envelope-wrap.open .envelope{animation:none}
+
+.hint{
+ font:12px system-ui,sans-serif;letter-spacing:2px;
+ color:#ffb5dc;margin-top:4px;animation:pulse 1.8s infinite;
+}
+@keyframes pulse{50%{opacity:.55}}
+@keyframes float{50%{transform:translateY(-8px) rotate(-1deg)}}
+@keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+
+.greeting{display:none;opacity:0}
+.greeting.show{display:block;animation:reveal 1.2s .2s forwards}
+@keyframes reveal{to{opacity:1}}
+.greeting h1{
+ font-weight:normal;font-size:clamp(29px,8vw,43px);
+ line-height:1.35;margin:12px 0;
+ color:#ffc4e2;text-shadow:0 0 12px #ff4ca9,0 0 35px #f09;
+}
+.line{display:block;opacity:0;transform:translateY(18px) scale(.96)}
+.show .line{animation:lineIn .9s forwards}
+.show .line:nth-child(1){animation-delay:.2s}
+.show .line:nth-child(2){animation-delay:.8s}
+.show .line:nth-child(3){animation-delay:1.35s}
+@keyframes lineIn{to{opacity:1;transform:translateY(0) scale(1)}}
+.date{
+ display:block;font:bold clamp(56px,16vw,82px)/1.1 system-ui,sans-serif;
+ color:#fff0f8;text-shadow:0 0 9px #ff5eb6,0 0 32px #ff168c;
+}
+.bloom{
+ width:135px;height:125px;position:relative;margin:8px auto 20px;
+ animation:bloomIn 1.4s .25s backwards;
+}
+@keyframes bloomIn{from{transform:scale(.15) rotate(-30deg);opacity:0}
+to{transform:scale(1) rotate(0);opacity:1}}
+.bloom i{
+ position:absolute;left:calc(50% - 22px);top:8px;
+ width:44px;height:67px;
+ border-radius:55% 55% 45% 45%;
+ transform-origin:50% 58px;
+ background:linear-gradient(160deg,#fff0f8,#ff79bd 65%,#d52b82);
+ box-shadow:inset -5px -4px 10px #c62b7544,0 0 13px #ff73ba55;
+}
+.bloom i:nth-child(1){transform:rotate(0deg)}
+.bloom i:nth-child(2){transform:rotate(45deg)}
+.bloom i:nth-child(3){transform:rotate(90deg)}
+.bloom i:nth-child(4){transform:rotate(135deg)}
+.bloom i:nth-child(5){transform:rotate(180deg)}
+.bloom i:nth-child(6){transform:rotate(225deg)}
+.bloom i:nth-child(7){transform:rotate(270deg)}
+.bloom i:nth-child(8){transform:rotate(315deg)}
+.bloom b{
+ position:absolute;width:31px;height:31px;border-radius:50%;
+ left:calc(50% - 15px);top:42px;
+ background:radial-gradient(circle,#fff4ae,#ffc64c 45%,#ff80ad);
+ box-shadow:0 0 18px #ffc4e2;
+}
+.message{
+ font-size:17px;line-height:1.9;color:#ffd8eb;
+ margin:18px auto;max-width:340px;
+ opacity:0;transform:translateY(12px);
+}
+.show .message{animation:lineIn 1s 2s forwards}
+.signature{
+ color:#ff8fc9;font-size:18px;font-style:italic;
+ opacity:0;margin-top:16px
+}
+.show .signature{animation:lineIn 1s 2.6s forwards}
+.actions{margin-top:26px}
+.actions button{
+ color:#ffd9ec;background:#ffffff0a;border:1px solid #ff9ed155;
+ border-radius:30px;padding:12px 19px;font:13px system-ui,sans-serif;
+ cursor:pointer;transition:background .3s,transform .3s;
+}
+.actions button:active{transform:scale(.96)}
+  .actions button:hover{background:#ff71b526}
+.flower-fall{
+ position:fixed;top:-35px;left:0;z-index:0;pointer-events:none;
+ animation:fall linear forwards;will-change:transform,opacity;
+}
+@keyframes fall{
+ 0%{transform:translate3d(0,-5vh,0) rotate(0deg);opacity:0}
+ 10%{opacity:.9}
+ 90%{opacity:.8}
+ 100%{transform:translate3d(var(--drift),110vh,0) rotate(var(--spin));opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;
+ animation-iteration-count:1!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="petals" id="petals"></div>
+<main class="scene">
+ <section class="main">
+  <div class="kicker">A little flower for you · 20/10</div>
+
+  <div id="envelopeWrap" class="envelope-wrap"
+       role="button" tabindex="0" aria-label="Chạm để mở lá thư">
+   <div class="envelope">
+    <div class="env-back"></div>
+    <div class="letter">
+     <span class="mini-flower">🌸</span>
+     <span>Một lời chúc nhỏ dành tặng bạn</span>
+     <span style="font-size:22px">♡</span>
+    </div>
+    <div class="env-front"></div>
+    <div class="flap"></div>
+    <div class="seal">🌷</div>
+   </div>
+  </div>
+
+  <div id="hint" class="hint">✧ CHẠM ĐỂ MỞ THƯ ✧</div>
+
+  <section id="greeting" class="greeting" aria-live="polite">
+   <div class="bloom" aria-hidden="true">
+    <i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><b></b>
+   </div>
+   <h1>
+    <span class="line">Chúc các bạn nữ</span>
+    <span class="line date">20/10</span>
+    <span class="line">luôn vui vẻ! ♡</span>
+   </h1>
+   <p class="message">
+    Chúc các bạn luôn xinh tươi, hạnh phúc,
+    gặp thật nhiều may mắn và luôn tỏa sáng
+    như những đóa hoa. Mong mỗi ngày của bạn
+    đều ngập tràn yêu thương và nụ cười! 🌷
+   </p>
+   <div class="signature">Thân gửi những bông hoa tuyệt vời 💗</div>
+   <div class="actions">
+    <button id="again">↻ Đọc lại lời chúc</button>
+   </div>
+  </section>
+ </section>
+</main>
+<script>
+const wrap=document.getElementById('envelopeWrap');
+const greeting=document.getElementById('greeting');
+const hint=document.getElementById('hint');
+const petals=document.getElementById('petals');
+let opened=false,petalTimer=null;
+
+function petal(){
+ const el=document.createElement('span');
+ el.className='flower-fall';
+ el.textContent=['🌸','🌷','✿','❀','💗'][Math.floor(Math.random()*5)];
+ el.style.left=Math.random()*100+'vw';
+ el.style.fontSize=(14+Math.random()*18)+'px';
+ el.style.setProperty('--drift',(Math.random()*150-75)+'px');
+ el.style.setProperty('--spin',(Math.random()*600-300)+'deg');
+ el.style.animationDuration=(7+Math.random()*6)+'s';
+ petals.appendChild(el);
+ setTimeout(()=>el.remove(),14000);
+}
+function openLetter(){
+ if(opened)return;
+ opened=true;
+ wrap.classList.add('open');
+ hint.style.opacity='0';
+ setTimeout(()=>{
+   greeting.classList.add('show');
+   greeting.scrollIntoView({behavior:'smooth',block:'center'});
+ },700);
+ for(let i=0;i<18;i++)setTimeout(petal,i*75);
+ petalTimer=setInterval(petal,600);
+}
+function resetLetter(){
+ opened=false;
+ clearInterval(petalTimer);
+ greeting.classList.remove('show');
+ wrap.classList.remove('open');
+ hint.style.opacity='1';
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+wrap.addEventListener('click',openLetter);
+wrap.addEventListener('keydown',e=>{
+ if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter()}
+});
+document.getElementById('again').addEventListener('click',resetLetter);
+</script>
+</body>
+</html>
